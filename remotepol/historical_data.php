@@ -13,11 +13,12 @@ $con = new mysqli($host, $user, $password, $dbname, $port, $socket)
 
     
    // $query = "SELECT * FROM db1.tablaprueba2 where Time1 between '2018-03-20 11:06:53.00' and '2018-03-20 11:09:13.00'";
-   $date1 = $_GET['date_1']
+   $date1 = $_GET['date_1'];
    $date2 = $_GET['date_2'];
-    echo ($date1);
-    echo ($date2);
-   $query = "SELECT * FROM db1.tablaprueba2 where Time1 between '2018-03-20 11:06:53.00' and '2018-03-20 18:09:13.00' ";
+
+   //echo $date1.$date2;
+
+   $query = "SELECT * FROM db1.tablaprueba2 where Time1 between '".$date1."' and '".$date2."' ";
 
    $result = mysqli_query($con,$query);
 

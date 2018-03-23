@@ -39,6 +39,7 @@
 
 
 <script>
+//Historical data------------------------------------------------------------------------------
 $(document).on("click","#submitbutton",function(){
           myFunction();
         function myFunction() {
@@ -53,18 +54,20 @@ $(document).on("click","#submitbutton",function(){
 
               alert(date2);
         }
-             console.log(date1)
-             console.log(date2)
+            //  console.log(date1)
+            //  console.log(date2)
 
                 //Obtención de datos y envio a Historical_data.php
-                function myJavascriptFunction() { 
+                // myJavascriptFunction();
+                // function myJavascriptFunction() {
 
-                window.location.href = "historical_data.php?date_1=" + date1;
-                }            
-                function myJavascriptFunction() { 
-                        
-                        window.location.href = "historical_data.php?date_2=" + date2;
-                        }
+                // window.location.href = "historical_data.php?date_1=" + date1;
+                // }
+                // myJavascriptFunction2();
+                // function myJavascriptFunction2() {
+
+                //         window.location.href = "historical_data.php?date_2=" + date2;
+                //         }
   marker2 =null;
   pos2=null;
   var HttpClient = function() {
@@ -78,11 +81,11 @@ $(document).on("click","#submitbutton",function(){
   anHttpRequest.send( null );
   }
   }
-  var theurl='historical_data.php';
+  var theurl="historical_data.php?date_2=" + date2+ '&&'+"date_1=" + date1 ;
   var client = new HttpClient();
   client.get(theurl, function(response) {
    response1 = JSON.parse(response);
-    var array_historicos=[];
+    array_historicos=[];
    response1.forEach(function(response) {
     lati=parseFloat(response.lat);
     lng=parseFloat(response.lng);
@@ -91,22 +94,21 @@ $(document).on("click","#submitbutton",function(){
     console.log(response);
     array_historicos.push(pos2);
    });
-
-  });
-
-  var flightPath = new google.maps.Polyline({
+   var flightPath = new google.maps.Polyline({
           path: array_historicos,
           geodesic: true,
-          strokeColor: '#FF0000',
+          strokeColor: '#000000',
           strokeOpacity: 1.0,
           strokeWeight: 2
         });
 
       flightPath.setMap(map);
 
+  });
+
 
     });
-</script>        
+</script>
 
 
     <div id="map"></div>
@@ -166,12 +168,12 @@ function polo22(){
         });
 
         flightPath.setMap(map);
-
+ps1=pos2;
+console.log(ps1)
 };
 }
 });
-//ps1=pos2;
-//console.log(ps1)
+
    //---------
       function initMap() {
 
